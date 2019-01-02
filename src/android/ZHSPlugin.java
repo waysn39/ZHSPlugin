@@ -45,6 +45,7 @@ public class ZHSPlugin extends CordovaPlugin {
         return false;
     }
 
+    //打印Pdf文件
     private void printPdf(String filePath,CallbackContext callbackContext){
         PrintHelper.doPrintPdf(activity,file);
     }
