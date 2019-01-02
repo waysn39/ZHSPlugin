@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--插件的标识，即发布安装到 plugin 的 ID ，在创建插件是设定-->
+<plugin id="base.plugin.zhs" version="0.0.2" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--插件的名称-->
+    <name>ZHSPlugin</name>
+    <JINYIMING />
+    
+    <!--对应我们的 javascript 文件，src 属性指向 www/ZHSPlugin.js-->
+    <js-module name="ZHSPlugin" src="www/ZHSPlugin.js">
+            <!--指定clobbers ，然后通过target的值来调用 ZKCustomPlugin.js,此处对应 ZKCustomPlugin.js 中exports的对象-->
+        <clobbers target="cordova.plugins.ZHSPlugin" />
+    </js-module>
+    
+    <!--支持的平台Android-->
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml"><!--这里是表示在res/xml/config.xml文件中插入以下一行代码-->
+            <feature name="ZHSPlugin">
+                <param name="android-package" value="base.plugin.zhs.ZHSPlugin" /><!--调用插件的类名，实现了execute方法-->
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml"><!--对AndroidManifest.xml文件进行修改-->
+        <!--表示将插件src/android目录下的ZKCustomPlugin.java文件拷贝到android的src/zhaikun68/plugin/custom目录下面去-->
+        <!--如果有引用包，也可以这样拷贝到安卓的指定lib下面去-->
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        </config-file>
+        <source-file src="src/android/ZHSPlugin.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/MyPrintPdfAdapter.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/PrintHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+    </platform>
+</plugin>
