@@ -23,6 +23,7 @@ import base.plugin.zhs.PrintHelper;
 public class ZHSPlugin extends CordovaPlugin {
 
    //private String file = "/storage/emulated/0/Download/Java_manual.pdf";
+   private String file = "";
    private Activity activity ;
    private CallbackContext myCallbackContext;
 
