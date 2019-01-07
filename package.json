@@ -1,11 +1,12 @@
 {
   "name": "ZHSPlugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jinyiming create",
   "cordova": {
     "id": "base.plugin.zhs",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "keywords": [
@@ -13,5 +14,13 @@
     "cordova-android"
   ],
   "author": "jinyiming",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waysn39/ZHSPlugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/waysn39/ZHSPlugin/issues"
+  },
+  "homepage": "https://github.com/waysn39/ZHSPlugin#readme"
 }
