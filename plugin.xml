@@ -27,6 +27,9 @@
         <source-file src="src/android/ZHSPlugin.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/MyPrintPdfAdapter.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/PrintHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/DBHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/LocalDataHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/SysUtils.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
     </platform>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">

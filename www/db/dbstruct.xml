@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+	<DBVersion Ver="1"/>
+	<Table Name="Test">
+		<Field
+			Key="True"
+			Name="StudentId"
+			Type="INTEGER"
+			/>
+		<Field
+			Name="Name"
+			Type="Text"
+			/>
+	</Table>
+</Tables>
