@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!--插件的标识，即发布安装到 plugin 的 ID ，在创建插件是设定-->
-<plugin id="base.plugin.zhs" version="0.0.3" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+<!--版本号规则：0.0.0 数字一：版本号，数字二：安卓实现的插件数，数字三：IOS实现的插件数 -->
+<plugin id="base.plugin.zhs" version="5.3.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <!--插件的名称-->
     <name>ZHSPlugin</name>
     <JINYIMING />
@@ -19,17 +20,60 @@
             </feature>
         </config-file>
         <config-file parent="/*" target="AndroidManifest.xml"><!--对AndroidManifest.xml文件进行修改-->
-        <!--表示将插件src/android目录下的ZKCustomPlugin.java文件拷贝到android的src/zhaikun68/plugin/custom目录下面去-->
-        <!--如果有引用包，也可以这样拷贝到安卓的指定lib下面去-->
+            <!--表示将插件src/android目录下的ZKCustomPlugin.java文件拷贝到android的src/zhaikun68/plugin/custom目录下面去-->
+            <!--如果有引用包，也可以这样拷贝到安卓的指定lib下面去-->
             <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+            <!-- 这个权限用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+            <!-- 这个权限用于访问GPS定位-->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+            <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+            <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+            <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+            <!-- 用于读取手机当前的状态-->
+            <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+            <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+            <!-- 访问网络，网络定位需要上网-->
+            <uses-permission android:name="android.permission.INTERNET" />
+            <!-- SD卡读取权限，用户写入离线定位数据-->
+            <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
         </config-file>
+        <!--同理，这个标签内的配置，将会copy到ionic项目的android主配置文件下的<application>标签内-->
+            <config-file parent="/manifest/application" target="AndroidManifest.xml">
+                <meta-data
+                    android:name="com.baidu.lbsapi.API_KEY"
+                    android:value="7vBqgigqpFrbb4wOlbUvjOZSQcIhPu0z"></meta-data>
+                <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"> </service>
+            </config-file>
+
+
         <source-file src="src/android/ZHSPlugin.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/MyPrintPdfAdapter.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/PrintHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/DBHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/LocalDataHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
         <source-file src="src/android/SysUtils.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+        <source-file src="src/android/BDLocationHelper.java" target-dir="src/base/plugin/zhs/ZHSPlugin" />
+
+        <source-file src="src/android/libs/arm64-v8a/libindoor.so" target-dir="libs/arm64-v8a" />
+        <source-file src="src/android/libs/arm64-v8a/liblocSDK7b.so" target-dir="libs/arm64-v8a" />
+        <source-file src="src/android/libs/armeabi/libindoor.so" target-dir="libs/armeabi" />
+        <source-file src="src/android/libs/armeabi/liblocSDK7b.so" target-dir="libs/armeabi" />
+        <source-file src="src/android/libs/armeabi-v7a/libindoor.so" target-dir="libs/armeabi-v7a" />
+        <source-file src="src/android/libs/armeabi-v7a/liblocSDK7b.so" target-dir="libs/armeabi-v7a" />
+        <source-file src="src/android/libs/x86/libindoor.so" target-dir="libs/x86" />
+        <source-file src="src/android/libs/x86/liblocSDK7b.so" target-dir="libs/x86" />
+        <source-file src="src/android/libs/x86_64/libindoor.so" target-dir="libs/x86_64" />
+        <source-file src="src/android/libs/x86_64/liblocSDK7b.so" target-dir="libs/x86_64" />
+        <source-file src="src/android/libs/BaiduLBS_Android.jar" target-dir="libs" />
+
+
     </platform>
     <platform name="ios">
         <config-file parent="/*" target="config.xml">

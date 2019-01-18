@@ -19,6 +19,9 @@ ZHSPlugin.prototype.deleteTable = function(arg0,arg1,arg2,success,error){
 ZHSPlugin.prototype.insertTable = function(arg0,arg1,arg2,success,error){
     exec(success,error,'ZHSPlugin', 'insertTable', [arg0,arg1,arg2]);
 };
+ZHSPlugin.prototype.getLocation = function(success,error){
+    exec(success,error,'ZHSPlugin', 'getLocation');
+}
 
 var zhsPlugin = new ZHSPlugin();
 module.exports = zhsPlugin;
